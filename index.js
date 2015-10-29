@@ -2,13 +2,13 @@
 
 var Worker = require("basic-distributed-computation").Worker;
 
-class EDCAuthorize extends Worker {
+class Authorize extends Worker {
   constructor(parent){
-    super("autorize", parent);
+    super("authorize", parent);
   }
 
   work(req){
-    if(req.body.credentials === "test"){
+    if(req.body.credentials && req.body.credentials.userId  === "test"){
       req.body.authorized = true;
       req.next();
     } else {
@@ -17,4 +17,4 @@ class EDCAuthorize extends Worker {
   }
 }
 
-module.exports = EDCAuthorize;
+module.exports = Authorize;
